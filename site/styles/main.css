@@ -1,12 +1,14 @@
 html {
-    max-width: 100% !important;
-    overflow-x: hidden !important;
+    height: 100%;
+    width: 100%;
 }
 
 body {
-    background-color: #29384e;
+    min-height: 100vh;
+    width: 100%;
+    background-color: black;
     overflow: visible;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;    
@@ -83,21 +85,47 @@ p::-moz-selection {
     color: Black;
     border-radius: 8px;
     display: flex;
-    justify-content: space-evenly;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start; /* Changed to flex-start */
+    text-align: left; /* Changed to left */
     padding-top: 10vh !important;
+    padding-left: 5%; /* Added left padding */
 }
 .card-text {
-    width: 40%;
-    text-align: justify;
+    width: 60%; /* Increased width to accommodate photo and text */
+    display: flex;
+    flex-direction: row; /* Changed to row */
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Space between photo and name */
 }
+
 .greeting {
-    font-family: 'Pattaya', sans-serif;
-    color: #0095A8;
-    text-align: center;
-    text-shadow: 2px 2px 2px #0095A855; 
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 150px;
+    font-weight: 800;
+    background-image: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-animation 15s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.name-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Left-align the names */
 }
 .card-text > p { 
     color: #29384e;
@@ -110,39 +138,51 @@ p::-moz-selection {
     font-style: normal;
 }
 .action {
-    margin-top: 28px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
 }
 .button-linkedin { 
     color: white;
     background-color: #1a76c6;
-    padding: 8px 12px;
-    border-radius: 4px;
+    padding: 15px;
+    border-radius: 50%;
     text-decoration: none;
     font-weight: 800;
-    border: 0; 
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .button-linkedin:hover {
     background-color: #105694;
 }
 svg { 
-    width: 18px;
-    height: 18px;
+    width: 30px;
+    height: 30px;
     fill: white;    
 }
 
-.card-photo {
-    border-color: #13ADC1;
-    align-self: flex-start;
-    margin-left: 10%;
-    margin: 0 auto;
+.photo-container {
+    border-radius: 50%;
+    padding: 5px;
+    background-image: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
     box-shadow: 0px 8px 14px 1px rgba(0, 0, 0, .2);
+}
+
+.card-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 @media all and (min-width: 1024px) { 
     .card {
         flex-direction: column;
-        align-items: center;
-        text-align: center;        
     }
     .card-text {
         width: 40%;
@@ -150,10 +190,9 @@ svg {
     .card-photo {
         width: 200px;
         height: 200px;
-        margin: 0 auto;
     }
     .greeting {
-        font-size: 48px;                
+        font-size: 96px;                
     }
     .card-text > p {
         font-size: 24px;     
@@ -222,4 +261,14 @@ svg {
     .button {
         font-size: 16px;
     }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 14ch } /* Use ch unit for character width */
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #bb86fc; }
 }
